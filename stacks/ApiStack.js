@@ -7,6 +7,7 @@ export function ApiStack({ stack, app }) {
   // Create the API
   const api = new Api(stack, "Api", {
     defaults: {
+      authorizer: "iam",
       function: {
         permissions: [table],
         environment: {
@@ -22,7 +23,6 @@ export function ApiStack({ stack, app }) {
       "DELETE /notes/{id}": "functions/delete.main",
     },
   });
-
   // Show the API endpoint in the output
   stack.addOutputs({
     ApiEndpoint: api.url,
